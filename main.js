@@ -34,7 +34,7 @@ const generarNumeroRandom = max => {
 //     } else if (tipoApuesta == 2) {
 //         let apuestaParImpar = pedirNum("ingrese \n1) Par \n2) Impar")
 //     }
-    
+
 //     let ruletaNum = generarNumeroRandom(36)
 //         //                      (0 o 1) + 1
 //     if ((ruletaNum % 2) + 1 == apuestaParImpar) {
@@ -87,18 +87,49 @@ if (datos["edad"] >= 18) {
             alert("Okey! Que quiere hacer?")
             alert("1) Ruleta \n2) Blackjack \n3) Salir")
             mesaJuego = Number(prompt("Elige una opcion, 1 o 3"))
-            if (mesaJuego == 1) {
+            if (mesaJuego == 1)
                 alert("Entraste a la Ruleta!")
-                // en proceso
-                generarNumeroRandom(36)
-            } else if (mesaJuego == 2) {
-                alert("Entraste a Blackjack")
-            } else if (mesaJuego == 3) {
-                alert("Saliste" + " " + datos.nombre)
-                break
-            } else {
-                alert("Elige una opcion correcta")
+            // en proceso
+
+            function pedirNum(texto, min, max) {
+
+
+                let num = Number(prompt(texto))
+
+                while (isNaN(num) || num < min || num > max) {
+                    alert("por favor, ingrese opcion valida")
+                    num = Number(prompt(texto))
+                }
+                return num
             }
+            while (true) {
+                let tipoApuesta = pedirNum("Ingrese \n1) Apostar a un numero \n2) Apostar par o impar", 1, 2)
+
+                if (tipoApuesta == 1) {
+                    // quiereapostar a un numero
+                    let apuestaNum = pedirNum("Ingrese el numero al que quiere apostar")
+                } else if (tipoApuesta == 2) {
+                    let apuestaParImpar = pedirNum("ingrese \n1) Par \n2) Impar")
+                }
+                let ruletaNum = generarNumeroRandom(36)
+                //                      (0 o 1) + 1
+                if ((ruletaNum % 2) + 1 == apuestaParImpar) {
+                    alert("Ganaste")
+                } else {
+                    alert("Perdiste")
+                }
+                if (confirm("Desea salir?")) {
+                    alert("Hasta la proxima")
+                    break
+                }
+            }
+        } else if (mesaJuego == 2) {
+            alert("Entraste a Blackjack")
+        } else if (mesaJuego == 3) {
+            alert("Saliste" + " " + datos.nombre)
+            break
+        } else {
+            alert("Elige una opcion correcta")
         }
     }
 } else {
